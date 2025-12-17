@@ -32,6 +32,7 @@ const photos: Photo[] = [
 const schedule: ScheduleItem[] = [
   { title: 'Ceremony', time: '5:30 PM - 6:00 PM', location: 'Pavilion' },
   { title: 'Cocktail Hour', time: '6:00 PM - 7:00 PM', location: 'Garden Terrace' },
+  { title: 'Dinner', time: '7:30 PM', location: 'Waterfront Room' },
   { title: 'Reception', time: '6:00 PM - 1:30 AM', location: 'Waterfront Room' }
 ]
 
