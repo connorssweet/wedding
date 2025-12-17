@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import HeroSection from './components/HeroSection.vue'
 import PhotoGallery from './components/PhotoGallery.vue'
-import StorySection from './components/StorySection.vue'  
+import StorySection from './components/StorySection.vue'
 import ScheduleSection from './components/ScheduleSection.vue'
 import RsvpSection from './components/RsvpSection.vue'
 import PageFooter from './components/PageFooter.vue'
@@ -18,21 +18,21 @@ type ScheduleItem = {
 }
 
 const photos: Photo[] = [
-  { src: '/photos/engagement-photo-1.jpg' },
-  { src: '/photos/engagement-photo-2.jpg' },
-  { src: '/photos/engagement-photo-3.jpg' },
-  { src: '/photos/engagement-photo-4.jpg' },
-  { src: '/photos/engagement-photo-5.jpg' },
-  { src: '/photos/engagement-photo-6.jpg' },
-  { src: '/photos/engagement-photo-7.jpg' },
-  { src: '/photos/engagement-photo-8.jpg' },
-  { src: '/photos/engagement-photo-9.jpg' }
+  { src: 'photos/engagement-photo-1.jpg' },
+  { src: 'photos/engagement-photo-2.jpg' },
+  { src: 'photos/engagement-photo-3.jpg' },
+  { src: 'photos/engagement-photo-4.jpg' },
+  { src: 'photos/engagement-photo-5.jpg' },
+  { src: 'photos/engagement-photo-6.jpg' },
+  { src: 'photos/engagement-photo-7.jpg' },
+  { src: 'photos/engagement-photo-8.jpg' },
+  { src: 'photos/engagement-photo-9.jpg' }
 ]
 
 const schedule: ScheduleItem[] = [
   { title: 'Ceremony', time: '5:30 PM - 6:00 PM', location: 'Pavilion' },
   { title: 'Cocktail Hour', time: '6:00 PM - 7:00 PM', location: 'Garden Terrace' },
-  { title: 'Reception', time: '7:00 PM - 1:30 AM', location: 'Waterfront Room' }
+  { title: 'Reception', time: '6:00 PM - 1:30 AM', location: 'Waterfront Room' }
 ]
 
 const storyParagraphs = [
@@ -82,6 +82,6 @@ const scrollToTop = () => {
 
     <RsvpSection :rsvp-link="rsvpLink" />
 
-    <PageFooter message="We are so excited to see you there!" @back-to-top="scrollToTop" />
+    <PageFooter message="We are so excited to see you there." @back-to-top="scrollToTop" />
   </main>
 </template>

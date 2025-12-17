@@ -52,7 +52,7 @@ const emit = defineEmits<{
   content: '';
   position: absolute;
   inset: 0;
-  background: url('/photos/hero-bg.jpg');
+  background: url('photos/hero-bg.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
