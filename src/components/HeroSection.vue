@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BaseButton from './BaseButton.vue'
 
-const heroBg = 'photos/hero-bg.jpg'
+const heroBg = new URL('../assets/hero-bg.jpg', import.meta.url).href
 
 const props = defineProps<{
   title: string
