@@ -41,7 +41,7 @@ const storyParagraphs = [
   "Now, as they plan their future together, Connor and Laura are more in love than ever. They can't wait to start this new chapter of their lives as husband and wife, knowing that their love story is just beginning."
 ]
 
-const rsvpLink = 'https://forms.gle/example'
+const rsvpLink = 'https://forms.gle/jkQoVdCFFDZf9TR88'
 
 const scrollToSection = (id: string) => {
   const target = document.getElementById(id)
