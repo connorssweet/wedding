@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import BaseButton from './BaseButton.vue'
 
+const heroBg = 'photos/hero-bg.jpg'
+
 const props = defineProps<{
   title: string
   subtitle: string
@@ -15,7 +17,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <header class="hero">
+  <header class="hero" :style="{ '--hero-image': `url(${heroBg})` }">
     <div class="hero-content">
       <h1>{{ props.title }}</h1>
       <p class="lede">{{ props.subtitle }}</p>
@@ -52,7 +54,7 @@ const emit = defineEmits<{
   content: '';
   position: absolute;
   inset: 0;
-  background: url('photos/hero-bg.jpg');
+  background: var(--hero-image);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
