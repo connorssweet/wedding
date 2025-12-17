@@ -62,7 +62,7 @@ const scrollToTop = () => {
       subtitle="invite you to their wedding"
       date-main="March 14, 2026"
       date-small="3.14.2026"
-      @scroll-rsvp="scrollToSection('rsvp')"
+      :rsvp-link="rsvpLink"
       @scroll-schedule="scrollToSection('schedule')"
     />
 

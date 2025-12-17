@@ -8,12 +8,18 @@ const props = defineProps<{
   subtitle: string
   dateMain: string
   dateSmall: string
+  rsvpLink: string
 }>()
 
 const emit = defineEmits<{
-  (e: 'scroll-rsvp'): void
   (e: 'scroll-schedule'): void
 }>()
+
+const openRsvp = () => {
+  if (props.rsvpLink) {
+    window.open(props.rsvpLink, '_blank', 'noreferrer')
+  }
+}
 </script>
 
 <template>
@@ -26,7 +32,7 @@ const emit = defineEmits<{
         <span class="date-small">{{ props.dateSmall }}</span>
       </div>
       <div class="hero-actions">
-        <BaseButton variant="primary" @click="emit('scroll-rsvp')">RSVP</BaseButton>
+        <BaseButton variant="primary" @click="openRsvp">RSVP</BaseButton>
         <BaseButton variant="ghost" @click="emit('scroll-schedule')">View schedule</BaseButton>
       </div>
     </div>
