@@ -10,7 +10,6 @@ defineProps<{
   <section class="section rsvp" id="rsvp">
     <div class="rsvp-card">
       <div>
-        <h2>RSVP</h2>
         <p class="muted">
           Please let us know if you can join. We cannot wait to celebrate together.
         </p>

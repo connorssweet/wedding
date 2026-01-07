@@ -1,13 +1,15 @@
 :root {
   --bg: #f9fbf7;
   --paper: #ffffff;
-  --ink: #1f2a24;
-  --muted: #5f6a63;
-  --line: #dfe8dd;
+  --ink: #22311d;
+  --muted: #4d5750;
+  --line: #cfd8cc;
   --accent: #4a9b7f;
+  --chocolate: #5a3a2a;
+  --bronze: #b1753b;
   --space: 8px;
-  font-family: 'Work Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  line-height: 1.7;
+  font-family: 'London', 'Times New Roman', serif;
+  line-height: 1.8;
   font-weight: 400;
   color: var(--ink);
   background-color: var(--bg);
@@ -15,6 +17,14 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: 'Amoresa Aged';
+  src: url('fonts/amoresa-aged.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 *,
@@ -28,10 +38,16 @@ body {
   min-height: 100vh;
   background: var(--bg);
   color: var(--ink);
+  font-size: 20px;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+#app {
+  min-height: 100vh;
+  animation: fadeIn 900ms ease both;
 }
 
 a {
@@ -48,22 +64,19 @@ button {
   font-family: inherit;
 }
 
-#app {
-  min-height: 100vh;
-}
-
 h1,
 h2,
 h3,
 h4 {
-  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+  font-family: 'Amoresa Aged', 'London', 'Times New Roman', serif;
   letter-spacing: 0.01em;
+  font-weight: 700;
 }
 
 .page {
   max-width: 1120px;
   margin: 0 auto;
-  padding: calc(var(--space) * 4) calc(var(--space) * 2.25) calc(var(--space) * 11);
+  padding: 0 calc(var(--space) * 2.25) calc(var(--space) * 11);
 }
 
 .section {
@@ -79,13 +92,15 @@ h4 {
 
 .section h2 {
   margin: 0;
-  font-size: clamp(32px, 4vw, 46px);
+  font-family: 'Amoresa Aged', 'London', 'Times New Roman', serif;
+  font-size: clamp(40px, 4.5vw, 60px);
   font-weight: 600;
 }
 
 .muted {
   color: var(--muted);
   margin: calc(var(--space) * 0.75) 0 0;
+  font-size: 20px;
 }
 
 .button {
@@ -96,12 +111,13 @@ h4 {
   padding: calc(var(--space) * 1.5) calc(var(--space) * 2.25);
   border-radius: calc(var(--space) * 1.75);
   font-weight: 700;
+  font-size: 20px;
   letter-spacing: 0.04em;
   border: 1px solid var(--line);
   cursor: pointer;
   background: var(--paper);
   color: var(--ink);
-  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease, border-color 120ms ease;
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
 }
 
 .button--primary {
@@ -110,13 +126,44 @@ h4 {
   border-color: var(--ink);
 }
 
-.button--primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
+.button--primary:hover,
+.button--primary:focus-visible {
+  transform: scale(1.03);
 }
 
-.button--ghost:hover {
-  transform: translateY(-1px);
-  border-color: rgba(31, 25, 21, 0.2);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+.button--ghost:hover,
+.button--ghost:focus-visible {
+  transform: scale(1.03);
+  border-color: var(--line);
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+span,
+a,
+li {
+  animation: fadeUp 800ms ease both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

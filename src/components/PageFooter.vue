@@ -2,10 +2,6 @@
 import BaseButton from './BaseButton.vue'
 import ArrowUp from './icons/ArrowUp.vue'
 
-defineProps<{
-  message: string
-}>()
-
 const emit = defineEmits<{
   (e: 'back-to-top'): void
 }>()
@@ -13,7 +9,6 @@ const emit = defineEmits<{
 
 <template>
   <footer class="footer">
-    <p>{{ message }}</p>
     <BaseButton class="back-to-top" variant="ghost" type="button" aria-label="Back to top" @click="emit('back-to-top')">
       <ArrowUp />
     </BaseButton>
@@ -34,8 +29,8 @@ const emit = defineEmits<{
 }
 
 .back-to-top {
-  width: calc(var(--space) * 5.25);
-  height: calc(var(--space) * 5.25);
+  width: calc(var(--space) * 10);
+  height: calc(var(--space) * 10);
   border-radius: 50%;
   border: 1px solid var(--line);
   background: var(--ink);
@@ -48,7 +43,7 @@ const emit = defineEmits<{
 }
 
 .back-to-top svg {
-  min-width: calc(var(--space) * 3.75);
+  min-width: calc(var(--space) * 7);
   fill: currentColor;
 }
 

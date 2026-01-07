@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import BaseButton from './BaseButton.vue'
+
 type ScheduleItem = {
   title: string
   time: string
   location: string
+  detail?: string
+  subEvents?: { title: string; time: string; location?: string; detail?: string }[]
 }
 
 defineProps<{
@@ -10,24 +14,51 @@ defineProps<{
   venueName: string
   venueAddress: string
 }>()
+
+const openMap = () => {
+  window.open(
+    'https://maps.google.com/?q=The%20Cambridge%20Mill%20100%20Water%20St%20N%20Cambridge%20ON',
+    '_blank',
+    'noreferrer'
+  )
+}
 </script>
 
 <template>
   <section class="section schedule" id="schedule">
+    <h2>Schedule</h2>
     <div class="section-header schedule-header">
       <div>
-        <h2>Schedule</h2>
         <div class="venue-note">
           <span class="venue-name">{{ venueName }}</span>
           <span class="venue-address muted">{{ venueAddress }}</span>
         </div>
       </div>
+      <BaseButton
+        class="venue-map-btn"
+        variant="primary"
+        type="button"
+        @click="openMap"
+      >
+        View on Google Maps
+      </BaseButton>
     </div>
     <div class="schedule-grid">
       <article v-for="item in schedule" :key="item.title" class="schedule-item">
         <p class="schedule-time">{{ item.time }}</p>
         <h3 class="schedule-title">{{ item.title }}</h3>
-        <p class="schedule-location">{{ item.location }}</p>
+        <p class="muted schedule-location">{{ item.location }}</p>
+        <p v-if="item.detail" class="schedule-note">{{ item.detail }}</p>
+        <ul v-if="item.subEvents?.length" class="schedule-sublist">
+          <li v-for="sub in item.subEvents" :key="sub.title" class="schedule-subitem">
+            <div class="schedule-subtime">{{ sub.time }}</div>
+            <div class="schedule-subcontent">
+              <span class="schedule-subtitle">{{ sub.title }}</span>
+              <span v-if="sub.location" class="muted schedule-sublocation">{{ sub.location }}</span>
+              <span v-if="sub.detail" class="muted schedule-subdetail">{{ sub.detail }}</span>
+            </div>
+          </li>
+        </ul>
       </article>
     </div>
   </section>
@@ -44,15 +75,20 @@ defineProps<{
   margin-top: var(--space);
   display: grid;
   gap: calc(var(--space) * 0.25);
-  font-size: 14px;
+  font-size: 20px;
 }
 
 .venue-name {
   font-weight: 700;
+  font-size: 22px;
 }
 
 .venue-address {
-  font-size: 14px;
+  font-size: 20px;
+}
+
+.venue-map-btn {
+  white-space: nowrap;
 }
 
 .schedule-grid {
@@ -86,19 +122,66 @@ defineProps<{
 
 .schedule-time {
   margin: 0 0 calc(var(--space) * 0.75);
-  color: #8f857c;
+  color: var(--muted);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 11px;
+  font-size: 20px;
 }
 
 .schedule-title {
   margin: 0 0 calc(var(--space));
   font-weight: 600;
+  font-size: 22px;
 }
 
 .schedule-location {
   margin: 0 0 calc(var(--space) * 0.75);
+  font-size: 20px;
+  display: block;
+}
+
+.schedule-sublist {
+  list-style: none;
+  padding: calc(var(--space)) calc(var(--space) * 1.25) 0;
+  margin: calc(var(--space) * 1) 0 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: calc(var(--space) * 0.75);
+}
+
+.schedule-subitem {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: calc(var(--space));
+  align-items: start;
+}
+
+.schedule-subtime {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  font-size: 20px;
+}
+
+.schedule-subtitle {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.schedule-sublocation,
+.schedule-subdetail {
+  display: block;
+  font-size: 20px;
+}
+
+.schedule-note {
+  margin-top: calc(var(--space));
+  padding-top: calc(var(--space));
+  border-top: 1px solid var(--line);
+}
+
+h3{
+  font-family: 'London', 'Times New Roman', serif;
 }
 </style>

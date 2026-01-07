@@ -3,6 +3,7 @@ import HeroSection from './components/HeroSection.vue'
 import PhotoGallery from './components/PhotoGallery.vue'
 import StorySection from './components/StorySection.vue'
 import ScheduleSection from './components/ScheduleSection.vue'
+import QuestionsSection from './components/QuestionsSection.vue'
 import RsvpSection from './components/RsvpSection.vue'
 import PageFooter from './components/PageFooter.vue'
 
@@ -15,6 +16,13 @@ type ScheduleItem = {
   time: string
   location: string
   detail?: string
+  subEvents?: { title: string; time: string; location?: string; detail?: string }[]
+}
+
+type FaqItem = {
+  question: string
+  answer: string
+  showSwatches?: boolean
 }
 
 const photos: Photo[] = [
@@ -30,10 +38,21 @@ const photos: Photo[] = [
 ]
 
 const schedule: ScheduleItem[] = [
-  { title: 'Ceremony', time: '5:30 PM - 6:00 PM', location: 'Pavilion' },
-  { title: 'Cocktail Hour', time: '6:00 PM - 7:00 PM', location: 'Garden Terrace' },
-  { title: 'Dinner', time: '7:30 PM', location: 'Waterfront Room' },
-  { title: 'Reception', time: '6:00 PM - 1:30 AM', location: 'Waterfront Room' }
+  {
+    title: 'Ceremony',
+    time: '5:30 PM - 6:00 PM',
+    location: 'Pavilion',
+    detail: 'Guests encouraged to arrive around 5:00 PM'
+  },
+  {
+    title: 'Reception',
+    time: '6:00 PM - 1:30 AM',
+    location: 'Waterfront Room',
+    subEvents: [
+      { title: 'Cocktail Hour', time: '6:00 PM', location: 'Garden Terrace' },
+      { title: 'Dinner', time: '7:30 PM', location: 'Waterfront Room' }
+    ]
+  }
 ]
 
 const storyParagraphs = [
@@ -43,6 +62,23 @@ const storyParagraphs = [
 ]
 
 const rsvpLink = 'https://forms.gle/jkQoVdCFFDZf9TR88'
+const faqs: FaqItem[] = [
+  { question: 'What is the attire for the celebration?', answer: 'The dress code for our celebration is cocktail attire.' },
+  {
+    question: 'May I bring a guest?',
+    answer:
+      'Due to limited venue capacity, plus-ones are restricted. The seats are reserved in your honour are listed on your invitation.'
+  },
+  {
+    question: 'Are children welcome?',
+    answer: 'In light of venue space limitations, we kindly request that this be an adults-only event.'
+  },
+  {
+    question: 'What are the wedding colours?',
+    answer: 'Our wedding palette features forest green, chocolate brown, and bronze.',
+    showSwatches: true
+  }
+]
 
 const scrollToSection = (id: string) => {
   const target = document.getElementById(id)
@@ -59,8 +95,8 @@ const scrollToTop = () => {
 <template>
   <main class="page">
     <HeroSection
-      title="Connor & Laura"
-      subtitle="invite you to their wedding"
+      title="Laura & Connor"
+      subtitle="Please join us for the wedding of"
       date-main="March 14, 2026"
       date-small="3.14.2026"
       :rsvp-link="rsvpLink"
@@ -71,7 +107,6 @@ const scrollToTop = () => {
 
     <StorySection
       title="Our story"
-      subtitle="A tale over ten years in the making"
       :paragraphs="storyParagraphs"
     />
 
@@ -81,8 +116,10 @@ const scrollToTop = () => {
       venue-address="100 Water St N, Cambridge, ON"
     />
 
+    <QuestionsSection :faqs="faqs" />
+
     <RsvpSection :rsvp-link="rsvpLink" />
 
-    <PageFooter message="We are so excited to see you there." @back-to-top="scrollToTop" />
+    <PageFooter @back-to-top="scrollToTop" />
   </main>
 </template>
