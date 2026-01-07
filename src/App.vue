@@ -67,7 +67,7 @@ const faqs: FaqItem[] = [
   {
     question: 'May I bring a guest?',
     answer:
-      'Due to limited venue capacity, plus-ones are restricted. The seats are reserved in your honour are listed on your invitation.'
+      'Due to limited venue capacity, plus-ones are restricted. The seats reserved in your honour are listed on your invitation.'
   },
   {
     question: 'Are children welcome?',

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import BaseButton from './BaseButton.vue'
 
 const props = defineProps<{
@@ -13,6 +14,13 @@ const emit = defineEmits<{
   (e: 'scroll-schedule'): void
 }>()
 
+const assetBase = import.meta.env.BASE_URL
+
+const heroStyle = computed(() => ({
+  '--divider-url': `url(${assetBase}divider.svg)`,
+  '--garland-url': `url(${assetBase}garland.svg)`
+}))
+
 const openRsvp = () => {
   if (props.rsvpLink) {
     window.open(props.rsvpLink, '_blank', 'noreferrer')
@@ -21,7 +29,7 @@ const openRsvp = () => {
 </script>
 
 <template>
-  <header class="hero">
+  <header class="hero" :style="heroStyle">
     <div class="hero-garland garland-tl"></div>
     <div class="hero-garland garland-tr"></div>
     <div class="hero-garland garland-bl"></div>
@@ -52,7 +60,7 @@ const openRsvp = () => {
   position: relative;
   overflow: visible;
   border-radius: 0;
-  background-color: var(--paper);
+  background-color: var(--bg);
   padding: clamp(calc(var(--space) * 6), 6vw, calc(var(--space) * 10.75))
     clamp(calc(var(--space) * 3.5), 6vw, calc(var(--space) * 10.25));
   display: flex;
@@ -142,8 +150,8 @@ const openRsvp = () => {
   margin: 0 auto;
   height: 34px;
   background-color: var(--ink);
-  mask-image: url('divider.svg');
-  -webkit-mask-image: url('divider.svg');
+  mask-image: var(--divider-url);
+  -webkit-mask-image: var(--divider-url);
   mask-repeat: no-repeat;
   -webkit-mask-repeat: no-repeat;
   mask-position: center;
@@ -164,8 +172,8 @@ const openRsvp = () => {
   opacity: 0.9;
   aspect-ratio: 6 / 7;
   background-color: var(--ink);
-  mask-image: url('garland.svg');
-  -webkit-mask-image: url('garland.svg');
+  mask-image: var(--garland-url);
+  -webkit-mask-image: var(--garland-url);
   mask-repeat: no-repeat;
   -webkit-mask-repeat: no-repeat;
   mask-size: contain;
