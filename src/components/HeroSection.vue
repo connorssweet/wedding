@@ -3,7 +3,6 @@ import { computed } from 'vue'
 import BaseButton from './BaseButton.vue'
 
 const props = defineProps<{
-  title: string
   subtitle: string
   dateMain: string
   dateSmall: string
@@ -37,7 +36,7 @@ const openRsvp = () => {
     <div class="hero-content">
       <div class="hero-divider"></div>
       <p class="hero-subtitle">{{ props.subtitle }}</p>
-      <h1 class="hero-title">{{ props.title }}</h1>
+      <h1 class="hero-title">La<span class="custom-spacing">u</span>ra & Connor</h1>
 
       <div class="hero-meta">
         <div class="hero-date">

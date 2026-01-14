@@ -95,7 +95,6 @@ const scrollToTop = () => {
 <template>
   <main class="page">
     <HeroSection
-      title="Laura & Connor"
       subtitle="Please join us for the wedding of"
       date-main="March 14, 2026"
       date-small="3.14.2026"
@@ -106,7 +105,6 @@ const scrollToTop = () => {
     <PhotoGallery :photos="photos" />
 
     <StorySection
-      title="Our story"
       :paragraphs="storyParagraphs"
     />
 

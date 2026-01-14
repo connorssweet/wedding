@@ -1,6 +1,5 @@
 <script setup lang="ts">
 defineProps<{
-  title: string
   paragraphs: string[]
 }>()
 </script>
@@ -9,7 +8,7 @@ defineProps<{
   <section class="section story" id="story">
     <div class="section-header">
       <div>
-        <h2>{{ title }}</h2>
+        <h2>O<span class="custom-spacing">u</span>r Story</h2>
       </div>
     </div>
     <div class="muted story-content">

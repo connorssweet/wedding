@@ -148,6 +148,10 @@ li {
   animation: fadeUp 800ms ease both;
 }
 
+.custom-spacing {
+  letter-spacing: -0.05em;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
