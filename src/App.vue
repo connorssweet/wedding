@@ -75,7 +75,7 @@ const faqs: FaqItem[] = [
   },
   {
     question: 'What are the wedding colours?',
-    answer: 'Our wedding palette features forest green, chocolate brown, and bronze.',
+    answer: 'Our wedding palette features forest green, chocolate brown, and bronze. These colours are primarily for the wedding party and decor. Guests are welcome to wear whatever colours they feel comfortable in.',
     showSwatches: true
   }
 ]
