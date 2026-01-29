@@ -3,6 +3,7 @@ import HeroSection from './components/HeroSection.vue'
 import PhotoGallery from './components/PhotoGallery.vue'
 import StorySection from './components/StorySection.vue'
 import ScheduleSection from './components/ScheduleSection.vue'
+import OvernightAccommodations from './components/OvernightAccommodations.vue'
 import QuestionsSection from './components/QuestionsSection.vue'
 import RsvpSection from './components/RsvpSection.vue'
 import PageFooter from './components/PageFooter.vue'
@@ -113,6 +114,8 @@ const scrollToTop = () => {
       venue-name="The Cambridge Mill"
       venue-address="100 Water St N, Cambridge, ON"
     />
+
+    <OvernightAccommodations />
 
     <QuestionsSection :faqs="faqs" />
 

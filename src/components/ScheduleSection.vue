@@ -108,7 +108,7 @@ const openMap = () => {
 }
 
 .schedule-item:hover {
-  transform: scale(1.02);
+  transform: scale(1.03);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
   border-color: rgba(31, 25, 21, 0.16);
 }
