@@ -7,10 +7,12 @@ const props = defineProps<{
   dateMain: string
   dateSmall: string
   rsvpLink: string
+  showGuessWhoButton?: boolean
 }>()
 
 const emit = defineEmits<{
   (e: 'scroll-schedule'): void
+  (e: 'scroll-guess-who'): void
 }>()
 
 const assetBase = import.meta.env.BASE_URL
@@ -19,12 +21,6 @@ const heroStyle = computed(() => ({
   '--divider-url': `url(${assetBase}divider.svg)`,
   '--garland-url': `url(${assetBase}garland.svg)`
 }))
-
-const openRsvp = () => {
-  if (props.rsvpLink) {
-    window.open(props.rsvpLink, '_blank', 'noreferrer')
-  }
-}
 </script>
 
 <template>
@@ -44,8 +40,10 @@ const openRsvp = () => {
           <span class="date-small">{{ props.dateSmall }}</span>
         </div>
         <div class="hero-actions">
-          <BaseButton variant="primary" @click="openRsvp">RSVP</BaseButton>
-          <BaseButton variant="ghost" @click="emit('scroll-schedule')">View schedule</BaseButton>
+          <BaseButton variant="primary" @click="emit('scroll-schedule')">View schedule</BaseButton>
+          <BaseButton v-if="props.showGuessWhoButton" variant="ghost" @click="emit('scroll-guess-who')">
+            Guess Who Answers
+          </BaseButton>
         </div>
       </div>
 

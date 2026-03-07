@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import AnswersToGuessWho from './components/AnswersToGuessWho.vue'
 import HeroSection from './components/HeroSection.vue'
 import PhotoGallery from './components/PhotoGallery.vue'
 import StorySection from './components/StorySection.vue'
 import ScheduleSection from './components/ScheduleSection.vue'
 import OvernightAccommodations from './components/OvernightAccommodations.vue'
 import QuestionsSection from './components/QuestionsSection.vue'
-import RsvpSection from './components/RsvpSection.vue'
 import PageFooter from './components/PageFooter.vue'
 
 type Photo = {
@@ -24,6 +25,11 @@ type FaqItem = {
   question: string
   answer: string
   showSwatches?: boolean
+}
+
+type GuessWhoAnswer = {
+  question: string
+  answer: 'bride' | 'groom'
 }
 
 const photos: Photo[] = [
@@ -81,6 +87,19 @@ const faqs: FaqItem[] = [
   }
 ]
 
+const guessWhoAnswers: GuessWhoAnswer[] = [
+  { question: 'Who said "I love you" first?', answer: 'bride' },
+  { question: 'Who is always cracking jokes?', answer: 'groom' },
+  { question: 'Who is the better cook?', answer: 'groom' },
+  { question: 'Who decorates for the holidays?', answer: 'bride' },
+  { question: 'Who takes longer to get ready?', answer: 'bride' },
+  { question: 'Who is the bigger night owl?', answer: 'groom' },
+  { question: 'Who knows more random trivia?', answer: 'groom' },
+  { question: 'Who hogs the blankets at night?', answer: 'bride' },
+  { question: 'Who misplaces their phone often?', answer: 'bride' },
+  { question: 'Who is the bigger coffee addict?', answer: 'groom' }
+]
+
 const scrollToSection = (id: string) => {
   const target = document.getElementById(id)
   if (target) {
@@ -91,6 +110,25 @@ const scrollToSection = (id: string) => {
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
+
+// March 14, 2026 at 5:00 PM EST (UTC-5)
+const guessWhoReleaseTimeMs = Date.parse('2026-03-14T22:00:00Z')
+const nowMs = ref(Date.now())
+let nowTimer: number | undefined
+
+onMounted(() => {
+  nowTimer = window.setInterval(() => {
+    nowMs.value = Date.now()
+  }, 60_000)
+})
+
+onBeforeUnmount(() => {
+  if (nowTimer !== undefined) {
+    window.clearInterval(nowTimer)
+  }
+})
+
+const showGuessWho = computed(() => nowMs.value >= guessWhoReleaseTimeMs)
 </script>
 
 <template>
@@ -100,7 +138,9 @@ const scrollToTop = () => {
       date-main="March 14, 2026"
       date-small="3.14.2026"
       :rsvp-link="rsvpLink"
+      :show-guess-who-button="showGuessWho"
       @scroll-schedule="scrollToSection('schedule')"
+      @scroll-guess-who="scrollToSection('guess-who-answers')"
     />
 
     <PhotoGallery :photos="photos" />
@@ -115,11 +155,13 @@ const scrollToTop = () => {
       venue-address="100 Water St N, Cambridge, ON"
     />
 
+    <AnswersToGuessWho v-if="showGuessWho" :items="guessWhoAnswers" />
+
     <OvernightAccommodations />
 
     <QuestionsSection :faqs="faqs" />
 
-    <RsvpSection :rsvp-link="rsvpLink" />
+    <!-- <RsvpSection :rsvp-link="rsvpLink" /> -->
 
     <PageFooter @back-to-top="scrollToTop" />
   </main>
